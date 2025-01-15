@@ -256,7 +256,7 @@ class Symbol extends graphic.Group {
             labelStatesModels = getLabelStatesModels(itemModel);
 
             hoverScale = emphasisModel.getShallow('scale');
-            cursorStyle = itemModel.getShallow('cursor');
+            cursorStyle = itemModel.getShallow('cursor') as string;
         }
 
         const symbolRotate = data.getItemVisual(idx, 'symbolRotate');

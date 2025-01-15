@@ -54,7 +54,7 @@ export interface MapStateOption<TCbParams = never> {
 export interface MapDataItemOption extends MapStateOption,
     StatesOptionMixin<MapStateOption, StatesMixinBase>,
     OptionDataItemObject<OptionDataValueNumeric> {
-    cursor?: string
+    cursor?: string | ((p: CallbackDataParams) => string)
     silent?: boolean
 }
 
