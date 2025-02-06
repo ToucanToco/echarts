@@ -37357,7 +37357,8 @@
           symbolPath.x = symbolOffset[0];
           symbolPath.y = symbolOffset[1];
         }
-        cursorStyle && symbolPath.attr('cursor', cursorStyle);
+        // Apply the user-defined cursor type
+        cursorStyle && updateCursorStyle$1(cursorStyle, symbolPath, idx, seriesModel);
         var symbolStyle = data.getItemVisual(idx, 'style');
         var visualColor = symbolStyle.fill;
         if (symbolPath instanceof ZRImage$1) {
@@ -37474,6 +37475,18 @@
     }(Group$3);
     function driftSymbol(dx, dy) {
       this.parent.drift(dx, dy);
+    }
+    /**
+     * Dynamically applies the cursor type using a user-defined function.
+     */
+    function updateCursorStyle$1(cursorStyle, el, dataIndex, seriesModel) {
+      if (!isFunction(cursorStyle)) {
+        el.attr('cursor', cursorStyle);
+      } else {
+        var dataParams = seriesModel.getDataParams(dataIndex);
+        var cursor = cursorStyle(dataParams);
+        el.attr('cursor', cursor);
+      }
     }
     var SymbolClz = Symbol;
 
